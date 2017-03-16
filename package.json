@@ -1,0 +1,36 @@
+{
+  "name": "kontainer",
+  "version": "1.0.0",
+  "description": "Create basic kubernetes configs from docker containers Edit",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anandkumarpatel/kontainer.git"
+  },
+  "keywords": [
+    "docker",
+    "kubernetes",
+    "convert"
+  ],
+  "author": "anandkumarpatel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/anandkumarpatel/kontainer/issues"
+  },
+  "homepage": "https://github.com/anandkumarpatel/kontainer#readme",
+  "dependencies": {
+    "101": "^1.6.2",
+    "bluebird": "^3.5.0",
+    "commander": "^2.9.0",
+    "js-yaml": "^3.8.2"
+  },
+  "devDependencies": {
+    "code": "^4.0.0",
+    "lab": "^12.1.0",
+    "sinon": "^1.17.7",
+    "standard": "^9.0.1"
+  }
+}

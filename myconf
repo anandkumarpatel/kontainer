@@ -1,0 +1,89 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: agitated-khorana-home-stuff
+data:
+  1.txt: |
+    we
+    got
+    to
+    celebrate
+  ca.pem: |
+    -----BEGIN RSA PRIVATE KEY-----
+    Proc-Type: 4,ENCRYPTED
+    DEK-Info: DES-EDE3-CBC,7BC501EF0F5929CC
+
+    KieKy7T3g+BNPIgG1K4QhNvgxQf8/BjvrMDMZbYgebYrLV31vVon8avUt1rmOz24
+    -----END RSA PRIVATE KEY-----
+  cat: |
+    cffa edfe 0700 0001 0300 0080 0200 0000
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: agitated-khorana-home-long-config
+data:
+  config: |
+    one
+    more
+    time
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: agitated-khorana-volume
+data:
+  1.txt: |
+    we
+    got
+    to
+    celebrate
+  ca.pem: |
+    -----BEGIN RSA PRIVATE KEY-----
+    Proc-Type: 4,ENCRYPTED
+    DEK-Info: DES-EDE3-CBC,7BC501EF0F5929CC
+
+    KieKy7T3g+BNPIgG1K4QhNvgxQf8/BjvrMDMZbYgebYrLV31vVon8avUt1rmOz24
+    -----END RSA PRIVATE KEY-----
+  cat: |
+    cffa edfe 0700 0001 0300 0080 0200 0000
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: agitated-khorana
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: agitated-khorana
+    spec:
+      containers:
+        - image: busybox
+          name: agitated-khorana
+          env:
+            - name: no_proxy
+              value: '*.local, 169.254/16'
+            - name: PATH
+              value: '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+          volumeMounts:
+            - name: agitated-khorana-home-stuff
+              mountPath: /home/stuff
+            - name: agitated-khorana-home-long-config
+              mountPath: /home/long
+            - name: agitated-khorana-volume
+              mountPath: /volume
+          args:
+            - sleep
+            - '10000'
+      volumes:
+        - name: agitated-khorana-home-stuff
+          configMap:
+            name: agitated-khorana-home-stuff
+        - name: agitated-khorana-home-long-config
+          configMap:
+            name: agitated-khorana-home-long-config
+        - name: agitated-khorana-volume
+          configMap:
+            name: agitated-khorana-volume
