@@ -8,7 +8,7 @@ const rimraf = require('rimraf')
 
 require('sinon-as-promised')(Promise)
 const lab = exports.lab = Lab.script()
-const configCreator = require('config-creator.js')
+const configCreator = require('../../../lib/config-creator.js')
 const samples = require('../../fixtures/samples.js')
 const fs = require('fs')
 
