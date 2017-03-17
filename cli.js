@@ -1,6 +1,6 @@
 const program = require('commander')
 
-const configCreator = require('config-creator')
+const configCreator = require('./lib/config-creator.js')
 
 program
   .version('v1.0.0')
