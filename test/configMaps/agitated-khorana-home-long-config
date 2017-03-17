@@ -1,9 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: agitated-khorana-home-long-config
-data:
-  config: |
-    one
-    more
-    time

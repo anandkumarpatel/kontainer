@@ -453,14 +453,36 @@ module.exports.inspectMounts = {
   'MountLabel': '',
   'Mounts': [
     {
-      'Destination': '/home/stuff',
+      // docker 1.12.2 non bound Mount
+      'Name': 'de6f488ca39b1215df55a34a2c70a63f68f249e8578c8f196a5517f468c03420',
+      'Source': '/docker/volumes/de6f488ca39b1215df55a34a2c70a63f68f249e8578c8f196a5517f468c03420/_data',
+      'Destination': '/data',
+      'Driver': 'local',
       'Mode': '',
-      'Propagation': '',
       'RW': true,
-      'Source': `${fixturesPath}/mounts/volume`,
-      'Type': 'bind'
+      'Propagation': ''
     },
     {
+      // docker 17.03.0-ce non bound Mount
+      'Type': 'volume',
+      'Name': '66e0f037f578c6261eb1e98c1c4e3d41962f73743f0d1e2df97ec7b5fc249b15',
+      'Source': '/var/lib/docker/volumes/66e0f037f578c6261eb1e98c1c4e3d41962f73743f0d1e2df97ec7b5fc249b15/_data',
+      'Destination': '/data',
+      'Driver': 'local',
+      'Mode': '',
+      'RW': true,
+      'Propagation': ''
+    },
+    {
+      // docker 1.12.2 bound Mount
+      'Source': `${fixturesPath}/mounts/volume`,
+      'Destination': '/home/stuff',
+      'Mode': 'ro',
+      'RW': false,
+      'Propagation': 'rprivate'
+    },
+    {
+      // docker 17.03.0-ce bound Mount
       'Destination': '/home/long/config',
       'Mode': '',
       'Propagation': '',
@@ -469,6 +491,7 @@ module.exports.inspectMounts = {
       'Type': 'bind'
     },
     {
+        // docker 17.03.0-ce bound Mount
       'Destination': '/volume',
       'Mode': '',
       'Propagation': '',
