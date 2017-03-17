@@ -4,7 +4,7 @@
   "description": "Create basic kubernetes configs from docker containers Edit",
   "main": "index.js",
   "scripts": {
-    "test": "npm test"
+    "test": "lab -v -c ./test"
   },
   "repository": {
     "type": "git",
@@ -25,12 +25,15 @@
     "101": "^1.6.2",
     "bluebird": "^3.5.0",
     "commander": "^2.9.0",
+    "dockerode": "^2.4.1",
     "js-yaml": "^3.8.2"
   },
   "devDependencies": {
     "code": "^4.0.0",
     "lab": "^12.1.0",
+    "rimraf": "^2.6.1",
     "sinon": "^1.17.7",
+    "sinon-as-promised": "^4.0.2",
     "standard": "^9.0.1"
   }
 }

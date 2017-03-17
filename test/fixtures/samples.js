@@ -330,6 +330,9 @@ module.exports.configExternalPorts = {
   }
 }
 
+module.exports.ymlExternalPortsDeploymentsRabbit = fs.readFileSync(path.join(fixturesPath, 'k8-configs-external-ports/deployments/rabbit')).toString()
+module.exports.ymlExternalPortsServicesRabbit = fs.readFileSync(path.join(fixturesPath, 'k8-configs-external-ports/services/rabbit')).toString()
+
 module.exports.inspectMounts = {
   'AppArmorProfile': '',
   'Args': [
@@ -631,3 +634,8 @@ module.exports.configMounts = {
     }
   }
 }
+
+module.exports.ymlMountsDeploymentsAgitatedKhorana = fs.readFileSync(path.join(fixturesPath, 'k8-configs-mounts/deployments/agitated-khorana')).toString()
+module.exports.ymlMountsConfigMapsAgitatedKhoranaVolume = fs.readFileSync(path.join(fixturesPath, 'k8-configs-mounts/configMaps/agitated-khorana-volume')).toString()
+module.exports.ymlMountsConfigMapsAgitatedKhoranaHomeStuff = fs.readFileSync(path.join(fixturesPath, 'k8-configs-mounts/configMaps/agitated-khorana-home-stuff')).toString()
+module.exports.ymlMountsConfigMapsAgitatedKhoranaHomeLongConfig = fs.readFileSync(path.join(fixturesPath, 'k8-configs-mounts/configMaps/agitated-khorana-home-long-config')).toString()

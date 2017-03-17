@@ -1,0 +1,43 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: rabbit
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: rabbit
+    spec:
+      containers:
+        - image: 'rabbitmq:3-management'
+          name: rabbit
+          env:
+            - name: no_proxy
+              value: '*.local, 169.254/16'
+            - name: PATH
+              value: >-
+                /usr/lib/rabbitmq/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+            - name: GOSU_VERSION
+              value: '1.7'
+            - name: RABBITMQ_LOGS
+              value: '-'
+            - name: RABBITMQ_SASL_LOGS
+              value: '-'
+            - name: RABBITMQ_VERSION
+              value: 3.6.5
+            - name: RABBITMQ_DEBIAN_VERSION
+              value: 3.6.5-1
+            - name: HOME
+              value: /var/lib/rabbitmq
+          command:
+            - docker-entrypoint.sh
+          args:
+            - rabbitmq-server
+          ports:
+            - containerPort: 15671
+            - containerPort: 15672
+            - containerPort: 25672
+            - containerPort: 4369
+            - containerPort: 5671
+            - containerPort: 5672
