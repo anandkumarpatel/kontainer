@@ -12,6 +12,8 @@ spec:
       containers:
         - image: 'rabbitmq:3-management'
           name: rabbit
+          args:
+            - rabbitmq-server
           env:
             - name: no_proxy
               value: '*.local, 169.254/16'
@@ -32,8 +34,6 @@ spec:
               value: /var/lib/rabbitmq
           command:
             - docker-entrypoint.sh
-          args:
-            - rabbitmq-server
           ports:
             - containerPort: 15671
             - containerPort: 15672

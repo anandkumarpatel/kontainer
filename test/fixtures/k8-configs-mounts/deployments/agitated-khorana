@@ -12,6 +12,9 @@ spec:
       containers:
         - image: busybox
           name: agitated-khorana
+          args:
+            - sleep
+            - '10000'
           env:
             - name: no_proxy
               value: '*.local, 169.254/16'
@@ -24,9 +27,6 @@ spec:
               mountPath: /home/long
             - name: agitated-khorana-volume
               mountPath: /volume
-          args:
-            - sleep
-            - '10000'
       volumes:
         - name: agitated-khorana-home-stuff
           configMap:
