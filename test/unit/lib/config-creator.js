@@ -34,7 +34,7 @@ describe('config-creator.js unit test', () => {
     })
 
     afterEach((done) => {
-      // rimraf.sync(outpath)
+      rimraf.sync(outpath)
       docker.prototype.getContainer.restore()
       done()
     })
