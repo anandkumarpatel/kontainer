@@ -14,4 +14,4 @@ RUN npm install
 
 ADD . /app
 
-CMD node cli.js --all -o /output
+CMD node cli.js --all --outpath /output --root-path /host
