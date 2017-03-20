@@ -44,7 +44,9 @@ describe('config-creator.js unit test', () => {
 
       inspectStub.resolves(samples.inspectMounts)
 
-      return configCreator.fromContainer(testId, outpath)
+      return configCreator.fromContainer(testId, outpath, {
+        removeMounts: 'logs'
+      })
       .then(() => {
         const ymlMountsDeploymentsAgitatedKhorana = fs.readFileSync(path.join(outpath, '/deployments/agitated-khorana')).toString()
         const ymlMountsConfigMapsAgitatedKhoranaVolume = fs.readFileSync(path.join(outpath, '/configMaps/agitated-khorana-volume')).toString()

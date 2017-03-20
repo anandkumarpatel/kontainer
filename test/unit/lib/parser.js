@@ -19,8 +19,10 @@ describe('parser.js unit test', () => {
       done()
     })
 
-    it('should return kubernetes config from docker inspect with mounts', (done) => {
-      const parser = new Parser(samples.inspectMounts)
+    it('should return kubernetes config from docker inspect with mounts and ignore', (done) => {
+      const parser = new Parser(samples.inspectMounts, {
+        removeMounts: 'logs'
+      })
       const out = parser.getJsonConfigs()
       expect(out).to.equal(samples.configMounts)
       done()

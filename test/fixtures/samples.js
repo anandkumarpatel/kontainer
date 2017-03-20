@@ -498,6 +498,13 @@ module.exports.inspectMounts = {
       'RW': true,
       'Source': `${fixturesPath}/mounts/volume`,
       'Type': 'bind'
+    },
+    {
+      'Destination': '/docker/app-logs',
+      'Mode': 'rw',
+      'RW': true,
+      'Source': '/docker/app-logs',
+      'Propagation': 'rprivate'
     }
   ],
   'Name': '/agitated_khorana',
