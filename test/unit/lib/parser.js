@@ -13,14 +13,14 @@ const it = lab.it
 describe('parser.js unit test', () => {
   describe('generateConfig', () => {
     it('should return kubernetes config from docker inspect with ports', (done) => {
-      const parser = new Parser(samples.inspectExternalPorts)
+      const parser = new Parser(samples.inspectExternalPorts())
       const out = parser.getJsonConfigs()
-      expect(out).to.equal(samples.configExternalPorts)
+      expect(out).to.equal(samples.configExternalPorts())
       done()
     })
 
     it('should return kubernetes using image as name', (done) => {
-      const parser = new Parser(samples.inspectExternalPorts, {
+      const parser = new Parser(samples.inspectExternalPorts(), {
         useImageAsName: true
       })
       const out = parser.getJsonConfigs()
@@ -36,11 +36,34 @@ describe('parser.js unit test', () => {
     })
 
     it('should return kubernetes config from docker inspect with mounts and ignore', (done) => {
-      const parser = new Parser(samples.inspectMounts, {
+      const inspectMount = samples.inspectMounts()
+      inspectMount.Mounts.push({
+        'Destination': '/docker/app-logs',
+        'Mode': 'rw',
+        'RW': true,
+        'Source': '/docker/app-logs',
+        'Propagation': 'rprivate'
+      })
+      const parser = new Parser(inspectMount, {
         removeMounts: 'logs'
       })
       const out = parser.getJsonConfigs()
-      expect(out).to.equal(samples.configMounts)
+
+      expect(out).to.equal(samples.configMounts())
+      done()
+    })
+
+    it('should return proper mounts if rootPath is passed', (done) => {
+      const inspectMount = samples.inspectMounts()
+      inspectMount.Mounts = inspectMount.Mounts.map((mount) => {
+        mount.Source = mount.Source.replace(samples.fixturesPath, '')
+        return mount
+      })
+      const parser = new Parser(inspectMount, {
+        rootPath: samples.fixturesPath
+      })
+      const out = parser.getJsonConfigs()
+      expect(out).to.equal(samples.configMounts())
       done()
     })
   }) // end generateConfig

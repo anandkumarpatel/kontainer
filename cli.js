@@ -8,6 +8,7 @@ program
   .option('-o, --outpath <path>', 'directory to place kubernetes config files')
   .option('-m, --remove-mounts <regex>', 'if source mount matches this regex, then it is ignored')
   .option('-i, --use-image-as-name', 'use image name as default name')
+  .option('-r, --root-path', 'root path for volumes. (useful when run in a container)')
   .option('-a, --all', 'get config for all containers on host')
   .parse(process.argv)
 

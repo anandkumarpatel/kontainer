@@ -42,11 +42,9 @@ describe('config-creator.js unit test', () => {
     it('should write configs out to files for mounts', () => {
       const testId = '123123'
 
-      inspectStub.resolves(samples.inspectMounts)
+      inspectStub.resolves(samples.inspectMounts())
 
-      return configCreator.fromContainer(testId, outpath, {
-        removeMounts: 'logs'
-      })
+      return configCreator.fromContainer(testId, outpath)
       .then(() => {
         const ymlMountsDeploymentsAgitatedKhorana = fs.readFileSync(path.join(outpath, '/deployments/agitated-khorana')).toString()
         const ymlMountsConfigMapsAgitatedKhoranaVolume = fs.readFileSync(path.join(outpath, '/configMaps/agitated-khorana-volume')).toString()
@@ -63,7 +61,7 @@ describe('config-creator.js unit test', () => {
     it('should write configs out to files for ports', () => {
       const testId = '123123'
 
-      inspectStub.resolves(samples.inspectExternalPorts)
+      inspectStub.resolves(samples.inspectExternalPorts())
 
       return configCreator.fromContainer(testId, outpath)
       .then(() => {

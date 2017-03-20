@@ -2,8 +2,15 @@ const fs = require('fs')
 const path = require('path')
 
 const fixturesPath = __dirname
+module.exports.fixturesPath = fixturesPath
 
-module.exports.inspectExternalPorts = {
+function clone (item) {
+  return () => {
+    return JSON.parse(JSON.stringify(item))
+  }
+}
+
+const inspectExternalPorts = {
   'Id': '84f054d8eaeea40c30ad430e1122f70e346a83cd0344f1630fc2e9a3438ffb2f',
   'Created': '2017-03-16T06:35:46.018988914Z',
   'Path': 'docker-entrypoint.sh',
@@ -221,8 +228,9 @@ module.exports.inspectExternalPorts = {
     }
   }
 }
+module.exports.inspectExternalPorts = clone(inspectExternalPorts)
 
-module.exports.configExternalPorts = {
+const configExternalPorts = {
   deployments: {
     rabbit: {
       'apiVersion': 'extensions/v1beta1',
@@ -329,11 +337,12 @@ module.exports.configExternalPorts = {
     }
   }
 }
+module.exports.configExternalPorts = clone(configExternalPorts)
 
 module.exports.ymlExternalPortsDeploymentsRabbit = fs.readFileSync(path.join(fixturesPath, 'k8-configs-external-ports/deployments/rabbit')).toString()
 module.exports.ymlExternalPortsServicesRabbit = fs.readFileSync(path.join(fixturesPath, 'k8-configs-external-ports/services/rabbit')).toString()
 
-module.exports.inspectMounts = {
+const inspectMounts = {
   'AppArmorProfile': '',
   'Args': [
     '10000'
@@ -498,13 +507,6 @@ module.exports.inspectMounts = {
       'RW': true,
       'Source': `${fixturesPath}/mounts/volume`,
       'Type': 'bind'
-    },
-    {
-      'Destination': '/docker/app-logs',
-      'Mode': 'rw',
-      'RW': true,
-      'Source': '/docker/app-logs',
-      'Propagation': 'rprivate'
     }
   ],
   'Name': '/agitated_khorana',
@@ -562,12 +564,14 @@ module.exports.inspectMounts = {
   }
 }
 
+module.exports.inspectMounts = clone(inspectMounts)
+
 const file1Txt = fs.readFileSync(path.join(fixturesPath, 'mounts/volume/1.txt')).toString()
 const fileCaPem = fs.readFileSync(path.join(fixturesPath, 'mounts/volume/ca.pem')).toString()
 const fileCat = fs.readFileSync(path.join(fixturesPath, 'mounts/volume/cat')).toString()
 const fileFileTxt = fs.readFileSync(path.join(fixturesPath, 'mounts/file.txt')).toString()
 
-module.exports.configMounts = {
+const configMounts = {
   deployments: {
     'agitated-khorana': {
       'apiVersion': 'extensions/v1beta1',
@@ -664,6 +668,8 @@ module.exports.configMounts = {
     }
   }
 }
+
+module.exports.configMounts = clone(configMounts)
 
 module.exports.ymlMountsDeploymentsAgitatedKhorana = fs.readFileSync(path.join(fixturesPath, 'k8-configs-mounts/deployments/agitated-khorana')).toString()
 module.exports.ymlMountsConfigMapsAgitatedKhoranaVolume = fs.readFileSync(path.join(fixturesPath, 'k8-configs-mounts/configMaps/agitated-khorana-volume')).toString()
