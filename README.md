@@ -13,8 +13,15 @@ Services are created if there are any ports.
 Config maps are created for all host bound volumes. It reads the mounted file or directory creates a config map with the existing files.
 
 # usage
+Run standalone
 ```
 node cli -c <containerId> -o <pathToOutputFolder>
+```
+
+Or run in docker
+
+```
+docker run -it -v /opt:/opt -v /opts:/opts -v `pwd`/out:/output -v /var/run/docker.sock:/var/run/docker.sock anandkumarpatel/kontainer node cli.js --all -o /output --use-image-as-name --remove-mounts 'log|db'
 ```
 
 # flags
