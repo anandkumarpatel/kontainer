@@ -1,4 +1,4 @@
-FROM node:4.2.2
+FROM node:6.10.3
 
 # Location of output files
 VOLUME /output
@@ -10,8 +10,10 @@ VOLUME /host
 ADD ./package.json /app/package.json
 WORKDIR /app
 
-RUN npm install
+RUN npm install --production
 
 ADD . /app
 
-CMD node cli.js --all --outpath /output --root-path /host
+ENTRYPOINT ["node", "cli.js"]
+
+CMD ["--all", "--outpath", "/output", "--root-path", "/host"]

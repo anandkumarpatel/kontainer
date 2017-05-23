@@ -22,11 +22,10 @@
   },
   "homepage": "https://github.com/anandkumarpatel/kontainer#readme",
   "dependencies": {
-    "101": "^1.6.2",
     "bluebird": "^3.5.0",
     "commander": "^2.9.0",
     "debug": "^2.6.3",
-    "dockerode": "^2.4.1",
+    "dockerode": "^2.4.3",
     "js-yaml": "^3.8.2"
   },
   "devDependencies": {

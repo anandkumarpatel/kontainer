@@ -21,7 +21,7 @@ node cli -c <containerId> -o <pathToOutputFolder>
 Or run in docker
 
 ```
-docker run -it -v /opt:/opt -v /opts:/opts -v `pwd`/out:/output -v /var/run/docker.sock:/var/run/docker.sock anandkumarpatel/kontainer node cli.js --all -o /output --use-image-as-name --remove-mounts 'log|db'
+docker run -it -v /:/root -v `pwd`:/output -v /var/run/docker.sock:/var/run/docker.sock anandkumarpatel/kontainer
 ```
 
 # flags
@@ -36,6 +36,9 @@ docker run -it -v /opt:/opt -v /opts:/opts -v `pwd`/out:/output -v /var/run/dock
 `-r, --root-path` - root path for volumes. (useful when run in a container)
 
 `-a, --all` - get config for all containers on host
+
+# Examples:
+node cli.js --all -o /output --use-image-as-name --remove-mounts 'log|db'
 
 # Notes
  * This tool does not generate production ready configs. It is meant to get you started with base templates.
