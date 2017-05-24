@@ -1,4 +1,7 @@
 # kontainer
+
+![kontainer_1 git](https://cloud.githubusercontent.com/assets/2194285/26417283/95d87f3a-406d-11e7-88e3-2914f799e20c.png)
+
 Create basic kubernetes configs from docker containers. This inspects docker containers and generates kubernetes YAML files to deploy them.
 
 Currently it creates `Deployments`, `Services` and `ConfigMaps`
